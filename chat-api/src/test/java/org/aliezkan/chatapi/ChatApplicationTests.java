@@ -1,4 +1,4 @@
-package org.aliezkan.chatapplication;
+package org.aliezkan.chatapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

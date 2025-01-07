@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.aliezkaN</groupId>
-    <artifactId>chat-application</artifactId>
+    <artifactId>chat-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>chat-application</name>
-    <description>chat-application</description>
+    <name>chat-api</name>
+    <description>chat api</description>
     <url/>
     <licenses>
         <license/>
