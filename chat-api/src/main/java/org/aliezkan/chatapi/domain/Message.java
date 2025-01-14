@@ -1,15 +1,10 @@
 package org.aliezkan.chatapi.domain;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-@Builder
-public class Message {
-
+@EqualsAndHashCode(callSuper = true)
+public class Message extends Event {
     private String content;
-    private String author;
-    private Type type;
-
-    public enum Type {JOIN, LEAVE, CHAT}
 }
