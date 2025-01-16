@@ -1,5 +1,6 @@
 package org.aliezkan.chatapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.aliezkan.chatapi.domain.Event;
 import org.aliezkan.chatapi.domain.Message;
@@ -25,7 +26,7 @@ public class ChatController {
 
     @MessageMapping(MESSAGE_MAPPING_PREFIX + "sendMessage")
     @SendTo(DESTINATION)
-    public Message sendMessage(@Payload Message chatMessage) {
+    public Message sendMessage(@Payload @Valid Message chatMessage) {
         return service.send(chatMessage);
     }
 
@@ -36,8 +37,5 @@ public class ChatController {
         return service.connect(chatEvent, headerAccessor);
     }
 
-    @GetMapping("/history")
-    public ResponseEntity<List<Message>> getHistory() {
-        return ResponseEntity.ok(service.getHistory());
-    }
+
 }

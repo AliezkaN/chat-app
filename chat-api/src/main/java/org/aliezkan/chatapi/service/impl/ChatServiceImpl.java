@@ -9,9 +9,9 @@ import org.aliezkan.chatapi.repository.MessageRepository;
 import org.aliezkan.chatapi.service.ChatService;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +22,7 @@ public class ChatServiceImpl implements ChatService {
     private final MessageMapper mapper;
 
     @Override
+    @Transactional
     public Message send(Message message) {
         message.setDateTime(LocalDateTime.now());
         MessageEntity persisted = repository.save(mapper.toEntity(message));
@@ -36,11 +37,5 @@ public class ChatServiceImpl implements ChatService {
         return event;
     }
 
-    @Override
-    public List<Message> getHistory() {
-        return repository.findTop50ByOrderByDateTimeDesc()
-                .stream()
-                .map(mapper::toDomain)
-                .toList();
-    }
+
 }

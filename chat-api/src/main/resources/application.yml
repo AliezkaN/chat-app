@@ -10,3 +10,19 @@ spring:
   h2:
     console:
       enabled: true
+
+app:
+  security:
+    jwt:
+      secret-key: ${JWT_TOKEN}
+    auth:
+      white-list:
+        - "/error"
+        - "/auth/**"
+        - "/h2-console/**"
+        - "/ws/**"
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.springframework.web.socket: DEBUG

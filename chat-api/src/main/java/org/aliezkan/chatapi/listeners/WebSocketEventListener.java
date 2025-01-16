@@ -25,7 +25,7 @@ public class WebSocketEventListener {
         Optional<String> usernameOpt = Optional.ofNullable(headerAccessor.getSessionAttributes())
                 .map(x -> (String) x.get("username"));
         usernameOpt.ifPresent(username -> {
-            log.info("user disconnected: {}", username);
+            logger.info("user disconnected: {}", username);
             Event message = new Event(EventType.LEAVE, username);
             messagingTemplate.convertAndSend("/topic/public", message);
         });
