@@ -1,0 +1,78 @@
+<button (click)="logout()" type="button" class="btn btn-link">
+  Log Out
+</button>
+
+<div *ngIf="isConnected" class="chat-container mt-3">
+  <div id="chat" class="card">
+    <div class="card-header text-center bg-primary text-white">
+      Chat Room
+    </div>
+    <div class="card-body" id="messageArea" #messageArea>
+      <ul class="list-unstyled">
+        <li
+          *ngFor="let msg of messages"
+          class="d-flex align-items-start mb-3"
+        >
+          <!-- Avatar -->
+          <div
+            class="avatar d-flex justify-content-center align-items-center me-3"
+            style="
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background-color: #6c757d;
+              color: white;
+              font-weight: bold;
+              font-size: 1.2rem;
+            "
+          >
+            {{ msg.initiator.charAt(0).toUpperCase() }}
+          </div>
+
+          <!-- Message Content -->
+          <div class="message-content flex-grow-1" >
+            <div class="d-flex justify-content-between">
+              <strong>{{ msg.initiator }}</strong>
+              <small class="text-muted">{{ msg.dateTime | date: 'short' }}</small>
+            </div>
+            <p
+              *ngIf="msg.type === 'CHAT'"
+              class="mb-0 text-wrap text-break"
+            >
+              {{ msg.content }}
+            </p>
+            <span *ngIf="msg.type === 'JOIN'" class="text-success small">
+              {{ msg.initiator }} joined!
+            </span>
+            <span *ngIf="msg.type === 'LEAVE'" class="text-danger small">
+              {{ msg.initiator }} left!
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-footer">
+      <form (submit)="sendMessage()" class="d-flex flex-column">
+        <div class="d-flex">
+      <textarea
+        [(ngModel)]="message"
+        placeholder="Type a message..."
+        name="message"
+        class="form-control me-2"
+        maxlength="200"
+        (input)="updateCharacterCount()"
+        rows="2"
+        style="width: 100%; resize: none;"
+      ></textarea>
+          <button type="submit" class="btn btn-primary" [disabled]="message.length === 0">
+            <i class="fas fa-paper-plane"></i> Send
+          </button>
+        </div>
+        <div class="text-end mt-1">
+          <small [class.text-danger]="message.length > 200">{{ message.length }} / 200</small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

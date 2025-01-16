@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+.login-container {
+  width: 800px !important;
+  margin-top: 15%;
+}
+
+.register-container {
+  width: 800px !important;
+  margin-top: 15%;
+}
+
+
+.chat-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+#messageArea {
+  height: 60vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
