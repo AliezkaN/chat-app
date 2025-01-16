@@ -72,8 +72,11 @@ export class ChatroomComponent {
           })
         )
         .subscribe({
-          next: value => this.messages = value.sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime()),
-          error: err => console.error(err)
+          next: value => {
+            this.messages = value
+              .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime());
+          },
+            error: err => console.error(err)
         })
     }
   }

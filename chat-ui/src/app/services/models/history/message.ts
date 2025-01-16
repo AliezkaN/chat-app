@@ -1,6 +1,6 @@
 export interface Message {
   initiator: string;
   type: string;
-  datetime: string;
+  dateTime: string;
   content: string;
 }
